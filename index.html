@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var cookieName = params.get('cookie');
+  var lsKey = params.get('ls');
+  var jsName = params.get('js');
+  var value = params.get('id') || 'userA';
 
+  if (cookieName) {
+    document.cookie = cookieName + '=' + encodeURIComponent(value) + '; path=/';
+  }
+  if (lsKey) {
+    localStorage.setItem(lsKey, value);
+  }
+  if (jsName) {
+    window[jsName] = value;
+  }
+})();
+</script>
+<!-- VWO SmartCode goes AFTER this -->
 <!-- Start Wingify Async V3.0 SmartCode -->
 <link rel="preconnect" href="https://edge.wingify.net"/>
 <script type="text/javascript">
